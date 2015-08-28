@@ -167,7 +167,7 @@
         for x in $( ls $WD/sdps/s3det/$year ); do
                 name=$( basename $x | sed 's/^\(.*\)\.pre-sdps\.s3det.*/\1/' )
 		grep 'Error' $WD/sdps/s3det/$year/$x  >$HOME/tmp/prep.res || ( grep 'RE:\|CP:\|UI: Number of groups selected:' $WD/sdps/s3det/$year/$x > $WD/sdps/s3det/$year/$name.sdps.s3det.$year &&
-		grep 'RE:' $WD/sdps/s3det/$year/$name.sdps.s3det.$year 2>$HOME/tmp/prep.res | cut -f 1 | cut -f 2 -d ' ' | sort -n | uniq > $WD/results/s3det/$year/$name.s3det )  # S3det SDPs
+		grep 'RE:' $WD/sdps/s3det/$year/$name.sdps.s3det.$year 2>$HOME/tmp/prep.res | cut -f 1 | cut -f 2 -d ' ' | sort | uniq > $WD/results/s3det/$year/$name.s3det )  # S3det SDPs
 	done
   done
 		# Tiempo de ejecución = ~ 29s
@@ -178,7 +178,7 @@
         for msa in $( ls $MSA  ); do
                 name=$( basename $msa | sed 's/^\(.*\)\.msa/\1/' )
                 if  [[ -s $WD/results/seq2/$year/$name.seq2 ]]; then
-                	cut -f1 $WD/sdps/xdet/$year/$name.sdps.xdet.$year.06 2>>$HOME/tmp/prep.res | sort -n | uniq > $WD/results/xdet/$year/$name.xdet  # Xdet SDPs                                        ### WARNING .06/07
+                	cut -f1 $WD/sdps/xdet/$year/$name.sdps.xdet.$year.06 2>>$HOME/tmp/prep.res | sort | uniq > $WD/results/xdet/$year/$name.xdet  # Xdet SDPs                                        ### WARNING .06/07
                 	cat $WD/results/xdet/$year/$name.xdet $WD/results/s3det/$year/$name.s3det 2>>$HOME/tmp/prep.res | sort | uniq > $WD/results/merged/$year/$name.merged  # Merged SDPs
                 	comm -12 $WD/results/xdet/$year/$name.xdet $WD/results/s3det/$year/$name.s3det 2>>$HOME/tmp/prep.res > $WD/results/common/$year/$name.common  # Common SDPs
 		fi
