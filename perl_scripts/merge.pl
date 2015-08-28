@@ -6,10 +6,10 @@ use warnings;
 
 use Getopt::Long; 
 
-#Declaring variables
+# Declarar variables
 my($ids_file,$mfa_file,$out_file,@ids); 
 
-#Options
+# Opciones
 usage() if (@ARGV < 1 or !GetOptions(
 		'ids=s'=>\$ids_file,
 		'fa=s'=>\$mfa_file,
@@ -31,9 +31,9 @@ select_seqs(\@ids,$mfa_file);
 exit;
 
 
-#Subroutines
+#Subrutinas
 
-sub load_ids{ # load ids as an array
+sub load_ids{ # Incorporar los IDs en un array
 
   open(INFILE,$_[0]) or die "\nCannot open $_[0]\n\n"; 
   my @in_file = <INFILE>;
@@ -45,7 +45,7 @@ sub load_ids{ # load ids as an array
 }
 
 
-sub select_seqs { # if header in ids, store id+seq
+sub select_seqs { # Si el header está en $ids, almacenar ID + secuencia
 
   my($ids,$mfasta) = @_; 
   open(INFILE,$mfasta) or die "\nCannot open $mfasta\n\n";
